@@ -1,0 +1,3 @@
+about.txt file created in public folder by 
+
+app.use(express.static('public'));
