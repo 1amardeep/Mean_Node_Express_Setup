@@ -1,3 +1,7 @@
 about.txt file created in public folder by 
 
 app.use(express.static('public'));
+
+/***/
+will update the whole deployment process here
+/***/
