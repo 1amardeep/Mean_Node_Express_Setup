@@ -1,5 +1,6 @@
 {
     "name": "my-express-app - Production",
+     "db" : "vidly_db",
     "mail":{
         "host": "dev-mail-server"
     }
