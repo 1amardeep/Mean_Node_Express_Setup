@@ -1,3 +1,4 @@
 {
-    "password" : "vidly_password"
+    "password" : "vidly_password",
+    "db" : "vidly_db"
 }
