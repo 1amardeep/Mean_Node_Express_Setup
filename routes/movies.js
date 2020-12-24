@@ -21,6 +21,13 @@ router.get('/', auth ,async (req,res) => {
     res.status(201).send(movieList);
 })
 
+router.get('/editMovie/:id', auth ,async (req,res) => {
+    
+    const movie = await MovieClass.findById(req.params.id);
+    if(!movie) return res.status(404).send('No movie exist');
+    res.status(201).send(movie);
+})
+
 router.post('/addMovie', async (req,res)=>{
   
     const schema = {
@@ -43,7 +50,7 @@ router.post('/addMovie', async (req,res)=>{
       }catch(ex){
        console.log(ex.message);
    }
-         res.send("movie added");
+         res.send(result);
 })
 
 router.put('/:id', async (req,res) => {
@@ -51,23 +58,32 @@ router.put('/:id', async (req,res) => {
      if(!movie) return res.status(404).send('No movie exist');
    
      const schema = {
-        name : Joi.string().min(3).required()
+        name : Joi.string().min(3).required(),
+        author : Joi.string().min(3).required(),
+        tags : Joi.array().required(),
+        isPublished : Joi.boolean().required(),
+        star : Joi.number().integer().required()
     }
-
+    
     const result = Joi.validate(req.body,schema);
-
+    console.log(result);
     if(result.error) return res.status(400).send(result.error.details[0].message);
        
      // alternative methods findById, findByIdandUpdate
     
      movie.name = req.body.name;
+     movie.author = req.body.author;
+     movie.tags = req.body.tags;
+     movie.isPublished = req.body.isPublished;
+     movie.star = req.body.star;
+
      const movieUpdated = await movie.save();
      console.log(movieUpdated);
 
     res.send(movie);
 })
 
-router.delete('/deleteMovie/:id', async (req,res) => {
+router.delete('/deleteMovie/:id', auth, async (req,res) => {
     const isMovie = await MovieClass.find({ _id : req.params.id});
     if(!isMovie) return res.status(404).send('No movie exist');
     
