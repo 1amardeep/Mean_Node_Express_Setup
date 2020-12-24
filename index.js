@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
+const compression = require('compression');
 const cors = require("cors");
 const config = require('config');
 const mongoose = require('mongoose');
@@ -19,6 +20,7 @@ app.use('/api/movies',moviesRoutes);
 app.use('/api/user',userRoutes);
 app.use('/api/auth',authRoutes);
 app.use(helmet());
+app.use(compression());
 
 console.log("Application name : "+ config.get('name'));
 //console.log("password : "+ config.get('password'));
