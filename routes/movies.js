@@ -15,7 +15,7 @@ router.get('/', auth ,async (req,res) => {
      // limit , skip , count
      .find()
     // .or([{author : 'Rishi'}, {author : 'Ram'}])
-     .select({ name : 1, author : 1 , isPublished : 1})
+    // .select({ name : 1, author : 1 , isPublished : 1, star : 1})
     // .count()
      .sort({author : 1});
     res.status(201).send(movieList);
