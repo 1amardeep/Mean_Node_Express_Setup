@@ -40,7 +40,7 @@ if(app.get('env') === 'development'){
 // process.env.NODE_ENV by default undefined
 // to set process env variable run : set NODE_ENV=production in cmd
 
-mongoose.connect(config.get('vidly_db'), { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(config.get('db'), { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('connected to moongose db'))
 .catch( (err) => console.log(err))
 
