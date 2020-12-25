@@ -2,6 +2,6 @@
     "name": "my-express-app - development",
     "mail":{
         "host": "dev-mail-server"
-    }
-     
+    },
+    "db" : "mongodb://localhost/vidly"
 }
